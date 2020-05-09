@@ -269,9 +269,9 @@ class MySingleChoiceSearchState<T> extends State<SearchWidget<T>> {
                           ),
                           itemBuilder: (context, index) => Material(
                             color: Colors.transparent,
-                            child: GestureDetector(
+                            child: ListTile(
                               onTap: () => onDropDownItemTap(_tempList[index]),
-                              child: widget.popupListItemBuilder(
+                              title: widget.popupListItemBuilder(
                                 _tempList.elementAt(index),
                               ),
                             ),
