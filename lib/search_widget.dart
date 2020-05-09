@@ -267,10 +267,11 @@ class MySingleChoiceSearchState<T> extends State<SearchWidget<T>> {
                           separatorBuilder: (context, index) => const Divider(
                             height: 1,
                           ),
-                          itemBuilder: (context, index) => Material(
-                            color: Colors.red,
+                          itemBuilder: (context, index) => GestureDetector(
+                            onTap: () => onDropDownItemTap(_tempList[index]),
                             child: ListTile(
-                              onTap: () => onDropDownItemTap(_tempList[index]),
+                              subtitle: Text("test"),
+                              //onTap: () => onDropDownItemTap(_tempList[index]),
                               title: widget.popupListItemBuilder(
                                 _tempList.elementAt(index),
                               ),
