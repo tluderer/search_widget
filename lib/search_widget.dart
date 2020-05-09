@@ -242,50 +242,40 @@ class MySingleChoiceSearchState<T> extends State<SearchWidget<T>> {
         return Positioned(
           left: position.left,
           width: width,
-          child: CompositedTransformFollower(
-            offset: Offset(
-              0,
-              height - position.bottom < listContainerHeight
-                  ? (textBoxHeight + 6.0)
-                  : -(listContainerHeight - 8.0),
-            ),
-            showWhenUnlinked: false,
-            link: _layerLink,
-            child: Container(
-              height: listContainerHeight,
-              margin: const EdgeInsets.symmetric(horizontal: 12),
-              child: Card(
-                color: Colors.white,
-                elevation: 5,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                ),
-                child: _tempList.isNotEmpty
-                    ? Scrollbar(
-                        child: ListView.separated(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          separatorBuilder: (context, index) => const Divider(
-                            height: 1,
-                          ),
-                          itemBuilder: (context, index) => GestureDetector(
-                            onTap: () => onDropDownItemTap(_tempList[index]),
-                            child: ListTile(
-                              subtitle: Text("test"),
-                              //onTap: () => onDropDownItemTap(_tempList[index]),
-                              title: widget.popupListItemBuilder(
-                                _tempList.elementAt(index),
-                              ),
+          child: Container(
+            height: listContainerHeight,
+            margin: const EdgeInsets.symmetric(horizontal: 12),
+            child: Card(
+              color: Colors.white,
+              elevation: 5,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(4)),
+              ),
+              child: _tempList.isNotEmpty
+                  ? Scrollbar(
+                      child: ListView.separated(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        separatorBuilder: (context, index) => const Divider(
+                          height: 1,
+                        ),
+                        itemBuilder: (context, index) => GestureDetector(
+                          onTap: () => onDropDownItemTap(_tempList[index]),
+                          child: ListTile(
+                            subtitle: Text("test"),
+                            //onTap: () => onDropDownItemTap(_tempList[index]),
+                            title: widget.popupListItemBuilder(
+                              _tempList.elementAt(index),
                             ),
                           ),
-                          itemCount: _tempList.length,
                         ),
-                      )
-                    : widget.noItemsFoundWidget != null
-                        ? Center(
-                            child: widget.noItemsFoundWidget,
-                          )
-                        : const NoItemFound(),
-              ),
+                        itemCount: _tempList.length,
+                      ),
+                    )
+                  : widget.noItemsFoundWidget != null
+                      ? Center(
+                          child: widget.noItemsFoundWidget,
+                        )
+                      : const NoItemFound(),
             ),
           ),
         );
